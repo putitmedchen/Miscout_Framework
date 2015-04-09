@@ -1,10 +1,11 @@
 package utils;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeTest;
 
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by sgo on 02.01.2015.
@@ -12,26 +13,29 @@ import java.util.ResourceBundle;
 public class AbstractTestCase {
 
     public WebDriver driver = DriverFactory.getDriver();
+    public ResourceBundle bundle;
+    private String baseUrl;
 
-    public String baseUrl;
-    private ResourceBundle bundle;
+    private long implicitWait;
 
     @BeforeTest
-    public void openBaseUrl(){
-        setBaseUrl();
+    public void openBaseUrl() {
+        getMiScoutProperties();
         driver.get(baseUrl);
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(implicitWait, TimeUnit.SECONDS);
     }
 
-    @AfterTest
+    @AfterSuite
     public void closeBrowser() {
         driver.close();
         driver.quit();
     }
 
-       public void setBaseUrl() {
+    public void getMiScoutProperties() {
         bundle = ResourceBundle.getBundle("miscout");
         baseUrl = bundle.getString("base.url");
-    }
+        implicitWait = Long.parseLong(bundle.getString("implicit.wait"));
 
+    }
 }

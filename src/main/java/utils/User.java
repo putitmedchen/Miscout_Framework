@@ -9,12 +9,14 @@ public class User {
     private String password;
 
     private static User user;
+    
+    public User (String login, String password){
+        this.login = login;
+        this.password = password;
+    }
 
     public static User generateUser() {
-        user = new User();
-        user.login = "sgo";
-        user.password = "sgo";
-
+        user = new User("sgo", "sgo");
         return user;
     }
 

@@ -56,8 +56,8 @@ public class MenuFragment extends AbstractPageObject {
 
 
         for(WebElement el: menuItems){
-            Assert.assertTrue(el.isEnabled(), el.getText() + " element is not enabled" );
-            Assert.assertTrue(el.isDisplayed(), el.getText() + " unable to display this element");
+            Assert.assertTrue(el.isEnabled(), el.getText() + el.getTagName() + " element is not enabled" );
+            Assert.assertTrue(el.isDisplayed(), el.getText()  + el.getTagName()  + " unable to display this element");
         }
     }
 

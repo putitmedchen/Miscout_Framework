@@ -8,4 +8,6 @@ import utils.User;
 public interface LoginFeature  {
 
     public void loginToMiscout(User user);
+
+    void loginAndSignOut(User user);
 }

@@ -5,5 +5,7 @@ package features;
  */
 public interface MenuFeature {
 
-    public void checkMenuItems();
+    void checkMenuItems();
+
+    void getScatterPlot();
 }

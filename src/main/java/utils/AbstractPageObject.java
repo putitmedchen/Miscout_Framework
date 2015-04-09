@@ -22,5 +22,14 @@ public abstract class AbstractPageObject {
         Assert.assertTrue(element.isDisplayed());
         Assert.assertTrue(element.isEnabled());
     }
+    
+    public void pause(long miliseconds){
+        try {
+            Thread.sleep(miliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }

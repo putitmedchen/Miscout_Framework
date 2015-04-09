@@ -1,7 +1,7 @@
 package features;
 
-import com.sun.jna.platform.win32.Netapi32Util;
 import org.openqa.selenium.WebDriver;
+import pages.HomePage;
 import pages.LandingPage;
 import pages.LoginPage;
 import utils.DriverFactory;
@@ -15,14 +15,27 @@ public class LoginFeatureImpl implements LoginFeature {
     WebDriver driver = DriverFactory.getDriver();
     private LandingPage landingPage = new LandingPage(driver);
     private LoginPage loginPage = new LoginPage(driver);
-    private User user;
-
-
+    private HomePage homePage = new HomePage(driver);
+    private Boolean bool = true;
 
     @Override
-    public void loginToMiscout(User User) {
-        user = User.generateUser();
+    public void loginToMiscout(User user) {
         landingPage.loginToMiscout();
         loginPage.typeCredentials(user.getLogin(), user.getPassword());
+        homePage.checkLoggedUser(user);
     }
+
+    @Override
+    public void loginAndSignOut(User user) {
+        if(bool == true){
+            landingPage.loginToMiscout();
+            bool = false;
+        }
+        loginPage.typeCredentials(user.getLogin(), user.getPassword());
+        homePage.checkLoggedUser(user);
+        homePage.logout();
+    }
+    
+//    @Override
+//    public void open
 }

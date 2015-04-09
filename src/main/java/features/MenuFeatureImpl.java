@@ -1,7 +1,5 @@
 package features;
 
-import org.openqa.selenium.WebDriver;
-import pages.HomePage;
 import pages.MenuFragment;
 import utils.DriverFactory;
 
@@ -10,13 +8,15 @@ import utils.DriverFactory;
  */
 public class MenuFeatureImpl implements MenuFeature {
 
-
-    private WebDriver driver = DriverFactory.getDriver();
-    private MenuFragment menuFragment = new MenuFragment(driver);
-
+    private MenuFragment menuFragment = new MenuFragment(DriverFactory.getDriver());
 
     @Override
     public void checkMenuItems() {
         menuFragment.checkMenuItems();
+    }
+
+    @Override
+    public void getScatterPlot() {
+        menuFragment.openScatterPlot();
     }
 }
