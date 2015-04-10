@@ -25,5 +25,8 @@
         <module name="MiCountAutomation" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="MiCountAutomation" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
