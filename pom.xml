@@ -30,10 +30,7 @@
             <!--<artifactId>selenium-chrome-driver</artifactId>-->
             <!--<version>2.34.0</version>-->
         <!--</dependency>-->
-
-        
     </dependencies>
-
 
    <build>
     <finalName>collectionspace-services-objectexit-client</finalName>
@@ -48,16 +45,16 @@
                 <suiteXmlFiles>
                     <suiteXmlFile>${basedir}/testng-suites/general.xml</suiteXmlFile>
                 </suiteXmlFiles>
-                <properties>
-                    <property>
-                        <name>usedefaultlisteners</name>
-                        <value>false</value>
-                    </property>
-                    <property>
-                        <name>listener</name>
-                        <value>org.uncommons.reportng.HTMLReporter, org.uncommons.reportng.JUnitXMLReporter</value>
-                    </property>
-                </properties>
+                <!--<properties>-->
+                    <!--<property>-->
+                        <!--<name>usedefaultlisteners</name>-->
+                        <!--<value>false</value>-->
+                    <!--</property>-->
+                    <!--<property>-->
+                        <!--<name>listener</name>-->
+                        <!--<value>org.uncommons.reportng.HTMLReporter, org.uncommons.reportng.JUnitXMLReporter</value>-->
+                    <!--</property>-->
+                <!--</properties>-->
                 <workingDirectory>target/</workingDirectory>
             </configuration>
         </plugin>
