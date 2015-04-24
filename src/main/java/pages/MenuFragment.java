@@ -1,7 +1,7 @@
 package pages;
 
+import elements.TextContainer;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import utils.AbstractPageObject;
@@ -14,37 +14,29 @@ import java.util.List;
  */
 public class MenuFragment extends AbstractPageObject {
 
+    @FindBy(xpath = "//a[@data-key='Map View']")
+    private TextContainer mapView;
+    @FindBy(xpath = "//a[@data-key='Dashboard']")
+    private TextContainer dashBoard;
+    @FindBy(xpath = "//a[@data-key='Online Logger']")
+    private TextContainer onlineLogger;
+    @FindBy(xpath = "//a[@data-key='Average Log']")
+    private TextContainer averageLog;
+    @FindBy(xpath = "//a[@data-key='Scatter Plot']")
+    private TextContainer scatterPlot;
+    @FindBy(xpath = "//a[@data-key='Status Log']")
+    private TextContainer statusLog;
+    @FindBy(xpath = "//a[@data-key='Reports']")
+    private TextContainer reports;
+    @FindBy(xpath = "//a[@data-key='Alarms']")
+    private TextContainer alarms;
+    private List<TextContainer> menuItems = new ArrayList<>();
+
     public MenuFragment(WebDriver driver) {
         super(driver);
     }
 
-    @FindBy(xpath = "//a[@data-key='Map View']")
-    private WebElement mapView;
-
-    @FindBy(xpath = "//a[@data-key='Dashboard']")
-    private WebElement dashBoard;
-
-    @FindBy(xpath = "//a[@data-key='Online Logger']")
-    private WebElement onlineLogger;
-
-    @FindBy(xpath = "//a[@data-key='Average Log']")
-    private WebElement averageLog;
-
-    @FindBy(xpath = "//a[@data-key='Scatter Plot']")
-    private WebElement scatterPlot;
-
-    @FindBy(xpath = "//a[@data-key='Status Log']")
-    private WebElement statusLog;
-
-    @FindBy(xpath = "//a[@data-key='Reports']")
-    private WebElement reports;
-
-    @FindBy(xpath = "//a[@data-key='Alarms']")
-    private WebElement alarms;
-
-    private List<WebElement> menuItems = new ArrayList<>();
-
-    public void checkMenuItems(){
+    public void checkMenuItems() {
         menuItems.add(mapView);
         menuItems.add(dashBoard);
         menuItems.add(onlineLogger);
@@ -55,41 +47,40 @@ public class MenuFragment extends AbstractPageObject {
         menuItems.add(alarms);
 
 
-        for(WebElement el: menuItems){
-            Assert.assertTrue(el.isEnabled(), el.getText() + el.getTagName() + " element is not enabled" );
-            Assert.assertTrue(el.isDisplayed(), el.getText()  + el.getTagName()  + " unable to display this element");
+        for (TextContainer el : menuItems) {
+            Assert.assertTrue(el.isClickable(), el.getText() + " element is not enabled");
         }
     }
 
-    public void openMapView(){
+    public void openMapView() {
         mapView.click();
     }
 
-    public void openDashBoard(){
+    public void openDashBoard() {
         dashBoard.click();
     }
 
-    public void openOnlineLogger(){
+    public void openOnlineLogger() {
         onlineLogger.click();
     }
 
-    public void openAverageLogger(){
+    public void openAverageLogger() {
         averageLog.click();
     }
 
-    public void openScatterPlot(){
+    public void openScatterPlot() {
         scatterPlot.click();
     }
 
-    public void openStatusLog(){
+    public void openStatusLog() {
         statusLog.click();
     }
 
-    public void openReports(){
+    public void openReports() {
         reports.click();
     }
 
-    public void openAlarms(){
+    public void openAlarms() {
         alarms.click();
     }
 }

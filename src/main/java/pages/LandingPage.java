@@ -1,7 +1,7 @@
 package pages;
 
+import elements.Button;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utils.AbstractPageObject;
 
@@ -10,18 +10,16 @@ import utils.AbstractPageObject;
  */
 public class LandingPage extends AbstractPageObject {
 
+    @FindBy(xpath = "//label[@for='header3']")
+    public Button loginButton;
+    @FindBy(xpath = "//a[@href='webservice']")
+    public Button runMiscoutWeb;
+    @FindBy(xpath = "//label[@for='header1']")
+    private Button welcomeButton;
+
     public LandingPage(WebDriver driver) {
         super(driver);
     }
-
-    @FindBy(xpath = "//label[@for='header1']")
-    private WebElement welcomeButton;
-
-    @FindBy(xpath = "//label[@for='header3']")
-    public WebElement loginButton;
-
-    @FindBy(xpath = "//a[@href='webservice']")
-    public WebElement runMiscoutWeb;
 
     public void loginToMiscout() {
         loginButton.click();

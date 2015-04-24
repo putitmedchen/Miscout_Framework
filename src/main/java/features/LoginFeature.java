@@ -1,13 +1,13 @@
 package features;
 
-import utils.User;
+import org.openqa.selenium.security.UserAndPassword;
 
 /**
  * Created by sgo on 02.01.2015.
  */
-public interface LoginFeature  {
+public interface LoginFeature {
 
-    public void loginToMiscout(User user);
+    void loginToMiscout(UserAndPassword user);
 
-    void loginAndSignOut(User user);
+    void loginAndSignOut(UserAndPassword user);
 }
