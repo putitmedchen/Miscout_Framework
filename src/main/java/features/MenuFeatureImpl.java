@@ -1,7 +1,7 @@
 package features;
 
 import pages.MenuFragment;
-import utils.DriverFactory;
+import utils.drivers.DriverFactory;
 
 /**
  * Created by sgo on 02.01.2015.

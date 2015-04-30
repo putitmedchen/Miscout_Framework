@@ -70,6 +70,9 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>${basedir}/testng-suites/general.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    
+                    <parallel>methods</parallel>
+                    <threadCount>10</threadCount>
 
                     <properties>
                         <property>

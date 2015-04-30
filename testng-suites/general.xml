@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Cybrecat demo test">
-    <test name="1.MiScout Login Test">
-        <parameter name="login" value="admin" />
-        <parameter name="password" value="admin" />
+<suite name="MiScout demo test">
+    <test name="1.MiScout Login Test" parallel="true" thread-count="5">
+        <parameter name="login" value="admin"/>
+        <parameter name="password" value="admin"/>
 
         <classes>
             <class name="MiScoutLoginTest"/>
         </classes>
     </test>
-    
-    <test name="1.Alarm Test">
-    <classes>
-        <class name="AlarmTest"/>
-    </classes>
-</test>
-    <test name="1.Check Targets Test">
+
+    <test name="1.Alarm Test" enabled="false">
+        <classes>
+            <class name="AlarmTest"/>
+        </classes>
+    </test>
+    <test name="1.Check Targets Test" enabled="false">
         <classes>
             <class name="CheckTargetsTest"/>
         </classes>
     </test>
-    
-    
 </suite>

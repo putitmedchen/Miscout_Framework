@@ -5,7 +5,7 @@ import org.openqa.selenium.security.UserAndPassword;
 import pages.HomePage;
 import pages.LandingPage;
 import pages.LoginPage;
-import utils.DriverFactory;
+import utils.drivers.DriverFactory;
 
 import java.util.Set;
 

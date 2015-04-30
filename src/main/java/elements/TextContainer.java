@@ -9,7 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.DriverFactory;
+import utils.drivers.DriverFactory;
 
 import java.util.concurrent.TimeUnit;
 

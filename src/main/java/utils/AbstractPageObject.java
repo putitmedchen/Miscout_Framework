@@ -7,6 +7,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import utils.ajax.CustomElementLocatorFactory;
+import utils.drivers.DriverFactory;
 
 import java.io.File;
 import java.io.IOException;

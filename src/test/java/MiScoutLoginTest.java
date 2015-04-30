@@ -29,7 +29,7 @@ public class MiScoutLoginTest extends AbstractTestCase {
         
     }
 
-    @DataProvider(name = "usersList")
+    @DataProvider(name = "usersList", parallel = true)
     public Object[][] getData(){
         return new Object[][]{
                 {"sgo", "sgo"},

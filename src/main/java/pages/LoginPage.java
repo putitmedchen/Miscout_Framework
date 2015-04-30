@@ -6,7 +6,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import utils.AbstractPageObject;
-import utils.DriverFactory;
+import utils.drivers.DriverFactory;
 
 /**
  * Created by sgo on 02.01.2015.

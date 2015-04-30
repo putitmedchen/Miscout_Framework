@@ -2,7 +2,7 @@ package features;
 
 import pages.AlarmPage;
 import pages.MenuFragment;
-import utils.DriverFactory;
+import utils.drivers.DriverFactory;
 
 /**
  * Created by sgo on 4/7/2015.

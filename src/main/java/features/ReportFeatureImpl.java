@@ -4,7 +4,7 @@ import enums.reports.AggregationType;
 import models.PowerCurveParameters;
 import models.StatusCodeTrendParameters;
 import pages.ReportParametersFragment;
-import utils.DriverFactory;
+import utils.drivers.DriverFactory;
 
 /**
  * Created by sgo on 4/24/2015.

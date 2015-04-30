@@ -1,5 +1,6 @@
-package utils;
+package utils.drivers;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,39 +13,32 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
+
+import static utils.drivers.PropertyManager.*;
 
 /**
  * Created by sgo on 02.01.2015.
  */
 public class DriverFactory {
 
-    public static WebDriver driver;
-    private static String browserName;
-    private static long implicitWait;
-    private static long pageloadTimeout;
-    private static ResourceBundle bundle;
-    private static String firefoxProfile;
-
+    private static Logger log = Logger.getLogger(DriverFactory.class);
+    
+    public static volatile WebDriver driver;
     static URL hostURL = null;
     static DesiredCapabilities capability;
+    
 
     private DriverFactory() {
     }
 
     public static WebDriver getDriver() {
-        bundle = ResourceBundle.getBundle("miscout");
-        implicitWait = Long.parseLong(bundle.getString("implicit.wait"));
-        browserName = bundle.getString("browser.name");
-        pageloadTimeout = Long.parseLong(bundle.getString("pageload.timeout"));
-        firefoxProfile = bundle.getString("firefox.profile");
-        
+
         if (driver == null) {
-            
-            switch(browserName) {
-                case "firefox":
-                    
+
+            switch (setBrowser()) {
+                case FIREFOX:
+
                     //якщо профіль ще не зареєстрований - 
 //                    File profileDir = new File("path/to/top/level/of/profile");
 //                    final String firebugPath = "path/to/firebuf.xpi";
@@ -57,12 +51,12 @@ public class DriverFactory {
 
 //                  витягає існуючий профіль з папки
                     ProfilesIni allProfiles = new ProfilesIni();
-                    FirefoxProfile profile = allProfiles.getProfile(firefoxProfile);
-                  //  profile.setPreference("foo.bar", 23);
+                    FirefoxProfile profile = allProfiles.getProfile(firefoxProfile());
+                    //  profile.setPreference("foo.bar", 23);
                     driver = new FirefoxDriver(profile);
                     break;
 
-                case "chrome": 
+                case CHROME:
                     System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
                     capability = DesiredCapabilities.chrome();
                     ChromeOptions options = new ChromeOptions();
@@ -72,25 +66,35 @@ public class DriverFactory {
                     driver = new ChromeDriver(capability);
 
                     break;
-                case "ie": driver = new InternetExplorerDriver();
+                case IE:
+                    driver = new InternetExplorerDriver();
                     break;
 
-                case "remote":
+                case REMOTE:
                     capability = DesiredCapabilities.firefox();
-                    capability.setBrowserName("firefox" );
+                    capability.setBrowserName("firefox");
                     try {
                         hostURL = new URL("http://172.21.4.149:4444/wd/hub");
                     } catch (MalformedURLException e) {
-                        e.printStackTrace();
+                        log.error("problem with instantiating remote web browser" + e);
                     }
-                    
                     driver = new RemoteWebDriver(hostURL, capability);
-            }  
-            driver.manage().timeouts().implicitlyWait(implicitWait, TimeUnit.SECONDS);
-            driver.manage().timeouts().pageLoadTimeout(pageloadTimeout, TimeUnit.SECONDS);
-            System.out.println("----------------------------------------" + implicitWait);
+            }
+            setTimeOuts();
         }
         return driver;
     }
 
+    public static WebDriver setTimeOuts() {
+        driver.manage().timeouts().implicitlyWait(implicitWait(), TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(pageLoad(), TimeUnit.SECONDS);
+        return driver;
+    }
+
+    public static void closeQuietly() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
+    }
 }

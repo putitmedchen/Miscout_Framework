@@ -1,7 +1,7 @@
 package features;
 
 import pages.TargetsFragment;
-import utils.DriverFactory;
+import utils.drivers.DriverFactory;
 
 
 /**
